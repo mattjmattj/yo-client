@@ -42,7 +42,7 @@ phpcs: prepare-build $(PHPCSED)
 	
 
 #phpunit	
-$(BUILDDIR)/phpunit.log:
+$(BUILDDIR)/phpunit.log: $(SOURCES)
 	@echo "Running phpunit tests"
 	@$(PIPEFAIL) $(PHPUNIT) $(PHPUNITOPTIONS) | tee $@
 	
