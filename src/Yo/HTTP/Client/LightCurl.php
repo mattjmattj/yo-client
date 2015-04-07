@@ -41,6 +41,6 @@ class LightCurl implements \Yo\HTTP\Client
         $result = \curl_exec($curl);
         \curl_close($curl);
         
-        return $result;
+        return new \Yo\HTTP\Response($result);
     }
 }
