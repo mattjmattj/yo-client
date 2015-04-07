@@ -28,42 +28,28 @@ class Client
     
     public function yo($username, Payload $payload = null)
     {
-        $request = $this->prepareYoRequest($username, $payload);
+        $request = $this->prepareEmptyYoRequest($payload);
+        $request->path = '/yo/';
+        $request->parameters += [
+            'username' => $username,
+        ];
         
         return $this->http->post($request);
     }
     
     public function yoAll(Link $payload = null)
     {
-        $request = $this->prepareYoallRequest($payload);
+        $request = $this->prepareEmptyYoRequest($payload);
+        $request->path = '/yoall/';
 
         return $this->http->post($request);
     }
     
-    private function prepareYoRequest($username, Payload $payload = null)
+    private function prepareEmptyYoRequest(Payload $payload = null)
     {
         $request = new HTTP\Request();
         $request->https = true;
         $request->host = 'api.justyo.co';
-        $request->path = '/yo/';
-        $request->parameters = [
-            'api_token' => $this->apiToken,
-            'username' => $username,
-        ];
-        
-        if (!empty($payload)) {
-            $request->parameters += $payload->toHTTPParameters();
-        }
-        
-        return $request;
-    }
-    
-    private function prepareYoallRequest(Link $payload = null)
-    {
-        $request = new HTTP\Request();
-        $request->https = true;
-        $request->host = 'api.justyo.co';
-        $request->path = '/yoall/';
         $request->parameters = [
             'api_token' => $this->apiToken,
         ];
