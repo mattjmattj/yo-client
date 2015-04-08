@@ -12,7 +12,7 @@ namespace Yo;
  */
 class BienOuBien
 {
-    public function tasVu()
+    public static function tasVu()
     {
         return 'tranquille';
     }
