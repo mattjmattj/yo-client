@@ -21,6 +21,16 @@ class Location implements Payload
         $this->longitude = $longitude;
     }
     
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+    
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+    
     public function toHTTPParameters()
     {
         return [

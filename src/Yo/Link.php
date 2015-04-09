@@ -19,6 +19,11 @@ class Link implements Payload
         $this->url = $url;
     }
     
+    public function getUrl()
+    {
+        return $this->url;
+    }
+    
     public function toHTTPParameters()
     {
         return ['link' => $this->url];

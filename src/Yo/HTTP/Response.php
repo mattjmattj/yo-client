@@ -18,6 +18,9 @@ class Response
     /** @var boolean */
     private $success;
     
+    /** @var string */
+    private $error;
+    
     public function __construct($rawResponse)
     {
         $this->rawResponse = $rawResponse;
@@ -34,6 +37,11 @@ class Response
         return $this->success;
     }
     
+    public function getError()
+    {
+        return $this->error;
+    }
+    
     public function parseYoResponse()
     {
         $response = json_decode($this->rawResponse, true);
@@ -42,5 +50,9 @@ class Response
         }
         
         $this->success = isset($response['success']) && $response['success'];
+        
+        if (isset($response['error'])) {
+            $this->error = $response['error'];
+        }
     }
 }
